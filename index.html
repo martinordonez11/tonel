@@ -37,6 +37,13 @@ a:focus-visible, button:focus-visible, .pista:focus-visible { outline: 2px solid
 .menu { display: flex; flex-wrap: wrap; gap: 0 8px; }
 .menu a { padding: 13px 12px; font-size: 14px; font-weight: 600; }
 .menu a.ofertas { padding: 14px 20px; font-weight: 800; background: var(--dorado); color: var(--marino); border-radius: 999px; }
+.ofertas-wrap { position: relative; display: inline-flex; }
+.ofertas-wrap a.ofertas { position: relative; overflow: hidden; display: block; }
+.ofertas-wrap .txt { position: relative; z-index: 1; }
+.chispa { position: absolute; background: #FFF3D1; clip-path: polygon(50% 0,60% 40%,100% 50%,60% 60%,50% 100%,40% 60%,0 50%,40% 40%); opacity: 0; pointer-events: none; animation: brillo 3.6s ease-in-out infinite; }
+.chispa.dentro { background: #fff; }
+.barrido-mini { position: absolute; top: 0; bottom: 0; left: -40%; width: 35%; background: linear-gradient(100deg, rgba(255,255,255,0), rgba(255,255,255,.6), rgba(255,255,255,0)); transform: translateX(0) skewX(-18deg); animation: barrido-mini 4.5s ease-in-out infinite; pointer-events: none; }
+@keyframes barrido-mini { 0% { transform: translateX(0) skewX(-18deg); } 55%,100% { transform: translateX(480%) skewX(-18deg); } }
 .menu a.sedes { color: var(--dorado); }
 
 /* Portada */
@@ -114,7 +121,9 @@ a:focus-visible, button:focus-visible, .pista:focus-visible { outline: 2px solid
   html { scroll-behavior: auto; }
   .brillo, .barrido { animation: none; }
   .barrido { display: none; }
-  .brillo { opacity: .7; }
+  .brillo, .chispa { opacity: .7; }
+  .barrido-mini { display: none; }
+  .chispa { animation: none; }
   .slide, .punto span { transition: none; }
 }
 </style>
@@ -151,7 +160,22 @@ a:focus-visible, button:focus-visible, .pista:focus-visible { outline: 2px solid
     <svg class="logo" role="img" aria-label="TONEL Licorerías"><use href="#logo-tonel"/></svg>
   </a>
   <nav class="menu" aria-label="Categorías">
-    <a class="ofertas" href="#ofertas">Ofertas</a>
+    <span class="ofertas-wrap">
+      <span class="chispa" style="top:-9px;left:-7px;width:13px;height:13px;animation-delay:0s" aria-hidden="true"></span>
+      <span class="chispa" style="top:-12px;left:42%;width:10px;height:10px;animation-delay:1.2s" aria-hidden="true"></span>
+      <span class="chispa" style="top:-8px;right:-9px;width:15px;height:15px;animation-delay:2.4s" aria-hidden="true"></span>
+      <span class="chispa" style="top:42%;left:-14px;width:10px;height:10px;animation-delay:0.6s" aria-hidden="true"></span>
+      <span class="chispa" style="top:46%;right:-14px;width:11px;height:11px;animation-delay:1.8s" aria-hidden="true"></span>
+      <span class="chispa" style="bottom:-10px;left:20%;width:13px;height:13px;animation-delay:3.0s" aria-hidden="true"></span>
+      <span class="chispa" style="bottom:-9px;right:22%;width:10px;height:10px;animation-delay:0.9s" aria-hidden="true"></span>
+      <a class="ofertas" href="#ofertas">
+        <span class="barrido-mini" aria-hidden="true"></span>
+        <span class="chispa dentro" style="top:22%;left:12%;width:9px;height:9px;animation-delay:0.3s" aria-hidden="true"></span>
+        <span class="chispa dentro" style="top:58%;left:50%;width:8px;height:8px;animation-delay:1.6s" aria-hidden="true"></span>
+        <span class="chispa dentro" style="top:18%;right:12%;width:9px;height:9px;animation-delay:2.7s" aria-hidden="true"></span>
+        <span class="txt">Ofertas</span>
+      </a>
+    </span>
     <a href="#vinos">Vinos</a>
     <a href="#whisky">Whisky</a>
     <a href="#ron">Ron</a>
@@ -880,7 +904,7 @@ a:focus-visible, button:focus-visible, .pista:focus-visible { outline: 2px solid
 <footer class="pie">
   <div class="pie-marca">
     <svg class="logo" role="img" aria-label="TONEL Licorerías"><use href="#logo-tonel"/></svg>
-    <p>© 2026 - Desarrollado por MDE Agency</p>
+    <p>© 2026 -Desarrollado por MDE Agency</p>
   </div>
   <div class="pie-aviso">
     <p>TOMAR BEBIDAS ALCOHÓLICAS EN EXCESO ES DAÑINO</p>
