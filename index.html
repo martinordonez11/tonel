@@ -22,7 +22,7 @@
   --margen: clamp(20px, 5vw, 80px);
 }
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; scroll-padding-top: 96px; }
 body { margin: 0; background: var(--marino); color: #fff; font-family: 'Montserrat', system-ui, sans-serif; }
 a { color: #F4F1EA; text-decoration: none; }
 a:hover { color: var(--dorado); }
@@ -32,7 +32,7 @@ a:focus-visible, button:focus-visible, .pista:focus-visible { outline: 2px solid
 .logo { display: block; aspect-ratio: 628.64 / 346.4; fill: var(--dorado); }
 
 /* Encabezado */
-.encabezado { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 32px; padding: 14px var(--margen); border-bottom: 1px solid rgba(199,167,108,.28); background: var(--marino); }
+.encabezado { position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 14px rgba(0,0,0,.35); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 32px; padding: 14px var(--margen); border-bottom: 1px solid rgba(199,167,108,.28); background: var(--marino); }
 .encabezado .logo { height: 58px; }
 .menu { display: flex; flex-wrap: wrap; gap: 0 8px; }
 .menu a { padding: 13px 12px; font-size: 14px; font-weight: 600; }
@@ -46,6 +46,15 @@ a:focus-visible, button:focus-visible, .pista:focus-visible { outline: 2px solid
 @keyframes barrido-mini { 0% { transform: translateX(0) skewX(-18deg); } 55%,100% { transform: translateX(480%) skewX(-18deg); } }
 .menu a.sedes { color: var(--dorado); }
 
+@media (max-width: 760px) {
+  html { scroll-padding-top: 132px; }
+  .encabezado { gap: 4px 16px; padding: 8px var(--margen); }
+  .encabezado .logo { height: 44px; }
+  .menu { flex-wrap: nowrap; overflow-x: auto; width: 100%; padding: 10px 6px; scrollbar-width: none; }
+  .menu::-webkit-scrollbar { display: none; }
+  .menu a { white-space: nowrap; }
+}
+  
 /* Portada */
 .portada { padding: clamp(56px, 9vw, 128px) var(--margen); overflow: hidden; }
 .portada .contenedor { display: flex; flex-wrap: wrap; align-items: center; gap: 48px 72px; }
